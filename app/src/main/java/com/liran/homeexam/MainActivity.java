@@ -10,12 +10,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.appsflyer.*;
+import com.appsflyer.AFInAppEventParameterName;
+import com.appsflyer.AFInAppEventType;
+import com.appsflyer.AFLogger;
 import com.appsflyer.AppsFlyerConversionListener;
+import com.appsflyer.AppsFlyerLib;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +28,6 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private static final String AF_DEV_KEY = "uddHHjCdAU3BnxDJpLyUb7";
     private List<Conversion> conversionList = new ArrayList<>();
-    private RecyclerView recyclerView;
     private ConversionAdapter pAdapter;
 
     @Override
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         pAdapter = new ConversionAdapter(conversionList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -61,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onAppOpenAttribution(Map<String, String> map) {
-
-                        Log.i("lirantest", "onAppOpen");
                     }
 
                     @Override
